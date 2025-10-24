@@ -1,0 +1,58 @@
+export interface Question {
+  question: string;
+  options: string[];
+  correctAnswer: number;
+}
+
+export const quizQuestions: Question[] = [
+  {
+    question: "What does HTML stand for?",
+    options: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
+    correctAnswer: 0
+  },
+  {
+    question: "Which programming language is known as the 'language of the web'?",
+    options: ["Python", "Java", "JavaScript", "C++"],
+    correctAnswer: 2
+  },
+  {
+    question: "What does CPU stand for?",
+    options: ["Central Processing Unit", "Computer Personal Unit", "Central Program Utility", "Computer Processing Unit"],
+    correctAnswer: 0
+  },
+  {
+    question: "Which company developed the Windows operating system?",
+    options: ["Apple", "Google", "Microsoft", "IBM"],
+    correctAnswer: 2
+  },
+  {
+    question: "What is the brain of the computer called?",
+    options: ["RAM", "Hard Drive", "CPU", "Motherboard"],
+    correctAnswer: 2
+  },
+  {
+    question: "Which of these is NOT a programming language?",
+    options: ["Python", "Java", "HTML", "C++"],
+    correctAnswer: 2
+  },
+  {
+    question: "What does RAM stand for?",
+    options: ["Random Access Memory", "Read Access Memory", "Rapid Application Memory", "Random Application Module"],
+    correctAnswer: 0
+  },
+  {
+    question: "Which protocol is used to transfer web pages?",
+    options: ["FTP", "SMTP", "HTTP", "POP3"],
+    correctAnswer: 2
+  },
+  {
+    question: "What is the smallest unit of data in a computer?",
+    options: ["Bit", "Byte", "Kilobyte", "Megabyte"],
+    correctAnswer: 0
+  },
+  {
+    question: "Who is known as the father of computers?",
+    options: ["Bill Gates", "Steve Jobs", "Charles Babbage", "Alan Turing"],
+    correctAnswer: 2
+  }
+];

@@ -1,0 +1,74 @@
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Trophy, RotateCcw, TrendingUp } from "lucide-react";
+
+interface QuizResultsProps {
+  score: number;
+  totalQuestions: number;
+  onRestart: () => void;
+}
+
+const QuizResults = ({ score, totalQuestions, onRestart }: QuizResultsProps) => {
+  const percentage = Math.round((score / totalQuestions) * 100);
+  
+  const getPerformanceMessage = () => {
+    if (percentage >= 90) return { message: "Outstanding!", icon: "🎉", color: "text-success" };
+    if (percentage >= 70) return { message: "Great Job!", icon: "🌟", color: "text-primary" };
+    if (percentage >= 50) return { message: "Good Effort!", icon: "👍", color: "text-secondary" };
+    return { message: "Keep Practicing!", icon: "💪", color: "text-accent" };
+  };
+
+  const performance = getPerformanceMessage();
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+      <Card className="w-full max-w-2xl p-8 md:p-12 text-center animate-scale-in shadow-[var(--shadow-card)]">
+        <div className="mb-6 flex justify-center">
+          <div className="p-6 rounded-full bg-gradient-to-br from-primary to-secondary animate-bounce-subtle">
+            <Trophy className="w-16 h-16 text-primary-foreground" />
+          </div>
+        </div>
+
+        <h2 className="text-3xl md:text-4xl font-bold mb-2">Quiz Complete!</h2>
+        <p className={text-2xl font-semibold mb-8 ${performance.color}}>
+          {performance.icon} {performance.message}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="p-6 rounded-lg bg-muted/50">
+            <div className="text-4xl font-bold text-primary mb-2">{score}</div>
+            <div className="text-sm text-muted-foreground">Correct Answers</div>
+          </div>
+          
+          <div className="p-6 rounded-lg bg-muted/50">
+            <div className="text-4xl font-bold text-secondary mb-2">{percentage}%</div>
+            <div className="text-sm text-muted-foreground">Success Rate</div>
+          </div>
+          
+          <div className="p-6 rounded-lg bg-muted/50">
+            <div className="text-4xl font-bold text-accent mb-2">{totalQuestions}</div>
+            <div className="text-sm text-muted-foreground">Total Questions</div>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <Button 
+            onClick={onRestart}
+            size="lg"
+            className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            <RotateCcw className="w-5 h-5 mr-2" />
+            Try Again
+          </Button>
+          
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <TrendingUp className="w-4 h-4" />
+            <span>Keep learning and improving!</span>
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+export default QuizResults;

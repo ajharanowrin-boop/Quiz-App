@@ -1,0 +1,62 @@
+import { useState } from "react";
+import QuizStart from "@/components/QuizStart";
+import QuizQuestion from "@/components/QuizQuestion";
+import QuizResults from "@/components/QuizResults";
+import { quizQuestions } from "@/data/quizData";
+
+type QuizState = "start" | "quiz" | "results";
+
+const Index = () => {
+  const [quizState, setQuizState] = useState<QuizState>("start");
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+
+  const handleStart = () => {
+    setQuizState("quiz");
+    setCurrentQuestion(0);
+    setScore(0);
+  };
+
+  const handleAnswer = (isCorrect: boolean) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+
+    if (currentQuestion < quizQuestions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      setQuizState("results");
+    }
+  };
+
+  const handleRestart = () => {
+    setQuizState("start");
+    setCurrentQuestion(0);
+    setScore(0);
+  };
+
+  return (
+    <>
+      {quizState === "start" && <QuizStart onStart={handleStart} />}
+      
+      {quizState === "quiz" && (
+        <QuizQuestion
+          question={quizQuestions[currentQuestion]}
+          questionNumber={currentQuestion + 1}
+          totalQuestions={quizQuestions.length}
+          onAnswer={handleAnswer}
+        />
+      )}
+      
+      {quizState === "results" && (
+        <QuizResults
+          score={score}
+          totalQuestions={quizQuestions.length}
+          onRestart={handleRestart}
+        />
+      )}
+    </>
+  );
+};
+
+export default Index;
